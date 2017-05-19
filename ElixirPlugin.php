@@ -94,7 +94,7 @@ class ElixirPlugin extends BasePlugin
         return [
             'manifestFile' => [
                 'type' => AttributeType::String,
-                'default' => 'public',
+                'default' => '/mix-manifest.json',
                 'required' => true
             ],
         ];
