@@ -5,16 +5,6 @@ namespace Craft;
 class ElixirService extends BaseApplicationComponent
 {
     /**
-     * @var string
-     */
-    protected $buildPath;
-
-    /**
-     * @var string
-     */
-    protected $publicPath;
-    
-    /**
     * @var string
     */
     protected $manifest;
@@ -25,9 +15,7 @@ class ElixirService extends BaseApplicationComponent
     public function __construct()
     {
         $settings = craft()->plugins->getPlugin('elixir')->getSettings();
-        $this->buildPath = $settings->buildPath;
-        $this->publicPath = $settings->publicPath;
-        $this->manifest = dirname(CRAFT_BASE_PATH) . '/' .  $this->publicPath . '/' . $this->buildPath . '/rev-manifest.json';
+        $this->manifest = dirname(CRAFT_BASE_PATH) . $settings->manifestFile;
     }
 
     /**
@@ -50,7 +38,7 @@ class ElixirService extends BaseApplicationComponent
             return $file;
         }
 
-        return '/' . $this->buildPath . '/' . $manifest[$file];
+        return $manifest[$file];
     }
 
     /**
@@ -73,17 +61,17 @@ class ElixirService extends BaseApplicationComponent
         // if no manifest, return the regular asset
         if (!$manifest) {
             if ($extension == 'js') {
-                return '<script src="' . $this->buildPath . '/' . $file . '"></script>';
+                return '<script src="' . $file . '"></script>';
             }
 
             return '<link rel="stylesheet" href="' . $file . '">';
         }
 
         if ($extension == 'js') {
-            return '<script src="' . $this->buildPath . '/' . $manifest[$file] . '"></script>';
+            return '<script src="' . $manifest[$file] . '"></script>';
         }
 
-        return '<link rel="stylesheet" href="' . $this->buildPath . '/' . $manifest[$file] . '">';
+        return '<link rel="stylesheet" href="' . $manifest[$file] . '">';
     }
 
     /**

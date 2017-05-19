@@ -92,12 +92,7 @@ class ElixirPlugin extends BasePlugin
     public function defineSettings()
     {
         return [
-            'buildPath' => [
-                'type' => AttributeType::String,
-                'default' => 'build',
-                'required' => true
-            ],
-            'publicPath' => [
+            'manifestFile' => [
                 'type' => AttributeType::String,
                 'default' => 'public',
                 'required' => true
@@ -116,7 +111,7 @@ class ElixirPlugin extends BasePlugin
             'settings' => $this->getSettings()
         ]);
     }
-    
+
     /**
     * Register Twig extension for use.
     */

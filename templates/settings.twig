@@ -2,25 +2,12 @@
 
 {{ forms.textField({
     first:        true,
-    label:        "Path to Public Directory",
-    id:           'publicPath',
-    name:         'publicPath',
-    instructions: "this is the path to the 'public' directory, only rename this if you have your main index.php in a unique directory."|t,
-    value:        settings.publicPath,
-    autofocus:    true,
-    default:      'public',
-    errors:       settings.getErrors('publicPath'),
-    required:     true
-}) }}
-
-{{ forms.textField({
-    first:        true,
-    label:        "Path to Build Directory"|t,
-    id:           'buildPath',
-    name:         'buildPath',
-    instructions: "By default, Laravel compiles versioned assets to 'build'. Modify this only if you changed the elixir configuration",
-    value:        settings.buildPath,
-    errors:       settings.getErrors('buildPath'),
+    label:        "Path to Manifest file"|t,
+    id:           'manifestFile',
+    name:         'manifestFile',
+    instructions: "Path to the generated manifest file (including filename)",
+    value:        settings.manifestFile,
+    errors:       settings.getErrors('manifestFile'),
     required:     true
 }) }}
 
